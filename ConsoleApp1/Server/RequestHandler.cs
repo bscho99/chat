@@ -1,6 +1,5 @@
 using System.Net;
-using System.Text;
-using System.Text.Json;
+using ConsoleApp1.Util;
 
 namespace ConsoleApp1.Server;
 
@@ -22,9 +21,8 @@ public sealed class RequestHandler
     private async Task HandleGetHello(HttpListenerResponse response)
     {
         // Serialize string to JSON and to byte array eventually
-        var responseObj = new { message = "Hello, World!" };
-        var responseJson = JsonSerializer.Serialize(responseObj);
-        var buffer = Encoding.UTF8.GetBytes(responseJson);
+        var helloString = "Hello, World!";
+        var buffer = helloString.ToJsonUtf8ByteArray();
 
         // Decorate HttpListenerResponse object
         response.ContentType = "application/json";
