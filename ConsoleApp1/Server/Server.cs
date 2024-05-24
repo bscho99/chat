@@ -13,7 +13,7 @@ public class Server
         scratchPaper = "";
 
         listener = new HttpListener();
-        listener.Prefixes.Add("http://*:8080/");
+        listener.Prefixes.Add("http://52.79.250.250:8080/");
 
         requestHandler = new RequestHandler();
 
@@ -31,5 +31,4 @@ public class Server
             await requestHandler.HandleRequest(context);
         }
     }
-
 }
