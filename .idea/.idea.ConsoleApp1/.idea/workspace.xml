@@ -9,7 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="196c4bf7-f710-4a2d-bc15-5cc32ab92220" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TestChattingRoomServer/Server/Message.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ConsoleApp1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestChattingRoomServer/Packet/Packet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestChattingRoomServer/Packet/Packet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TestChattingRoomServer/Server/Server.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestChattingRoomServer/Server/Server.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,12 +64,12 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Executable.Run.executor&quot;: &quot;Run&quot;,
-    &quot;.NET Project.TestChattingRoomServer.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Project.TestChattingRoomServer.executor&quot;: &quot;Debug&quot;,
     &quot;HTTP Request.scratch_1 | #2.executor&quot;: &quot;Run&quot;,
     &quot;HTTP Request.scratch_1 | GET request to example server.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240527_0001&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/user-id&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -85,7 +87,7 @@
   <component name="RunManager" selected=".NET Project.TestChattingRoomServer">
     <configuration name="TestChattingRoomServer" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/TestChattingRoomServer/bin/Debug/net8.0/TestChattingRoomServer.exe" />
-      <option name="PROGRAM_PARAMETERS" value="http://localhost:8000/" />
+      <option name="PROGRAM_PARAMETERS" value="http://localhost:8080/" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TestChattingRoomServer/bin/Debug/net8.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
@@ -107,26 +109,18 @@
     <configuration name="scratch_1 | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.http" index="2" requestIdentifier="#2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="Run" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/ConsoleApp1/bin/Debug/net8.0/ConsoleApp1.exe" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ConsoleApp1/bin/Debug/net8.0" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build Solution" enabled="true" />
-      </method>
+    <configuration name="scratch_1 | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.http" index="3" requestIdentifier="#3" runType="Run single request">
+      <method v="2" />
     </configuration>
     <list>
-      <item itemvalue=".NET Executable.Run" />
       <item itemvalue=".NET Project.TestChattingRoomServer" />
+      <item itemvalue="HTTP Request.scratch_1 | #3" />
       <item itemvalue="HTTP Request.scratch_1 | #2" />
       <item itemvalue="HTTP Request.scratch_1 | GET request to example server" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.scratch_1 | #3" />
         <item itemvalue="HTTP Request.scratch_1 | #2" />
         <item itemvalue="HTTP Request.scratch_1 | GET request to example server" />
       </list>
@@ -143,7 +137,7 @@
       <workItem from="1716546069565" duration="365000" />
       <workItem from="1716546514991" duration="4575000" />
       <workItem from="1716777992579" duration="2536000" />
-      <workItem from="1716788351762" duration="7565000" />
+      <workItem from="1716788351762" duration="10296000" />
     </task>
     <servers />
   </component>
@@ -154,5 +148,37 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TestChattingRoomServer/Server/Server.cs</url>
+          <line>110</line>
+          <properties documentPath="D:\Study\mock-project\mock-server\ConsoleApp1\TestChattingRoomServer\Server\Server.cs" containingFunctionPresentation="Method 'WriteToBuffer'">
+            <startOffsets>
+              <option value="3196" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3241" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TestChattingRoomServer/Server/Server.cs</url>
+          <line>132</line>
+          <properties documentPath="D:\Study\mock-project\mock-server\ConsoleApp1\TestChattingRoomServer\Server\Server.cs" containingFunctionPresentation="Method 'GetUserIdFromIpAddress'">
+            <startOffsets>
+              <option value="3867" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3906" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
