@@ -24,6 +24,8 @@ public sealed class Server
 {
     private readonly HttpListener _listener;
     private string _textBuffer;
+    private Dictionary<string, int> _ipToUserId;
+    private int _maxUserId;
 
     public Server(string socket)
     {
@@ -31,6 +33,8 @@ public sealed class Server
         _listener.Prefixes.Add(socket);
 
         _textBuffer = String.Empty;
+
+        _ipToUserId = new Dictionary<string, int>();
 
         _listener.Start();
         Console.WriteLine($"Listening from {socket}...");
@@ -106,5 +110,16 @@ public sealed class Server
         // Write the response to the output stream
         await response.OutputStream.WriteAsync(outputBuffer, 0, outputBuffer.Length);
         response.OutputStream.Close();
+    }
+
+    private int GetUserIdFromIpAddress(string ipAddress)
+    {
+        if (_ipToUserId.ContainsKey(ipAddress))
+        {
+            return _ipToUserId[ipAddress];
+        }
+        _ipToUserId.Add(ipAddress, _maxUserId);
+        _maxUserId += 1;
+        return _ipToUserId[ipAddress];
     }
 }
