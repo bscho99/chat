@@ -13,9 +13,9 @@ public class Server
         scratchPaper = "";
 
         listener = new HttpListener();
-        listener.Prefixes.Add("http://+:8080/");
+        listener.Prefixes.Add("http://localhost:8080/");
 
-        requestHandler = new RequestHandler();
+        requestHandler = new RequestHandler(scratchPaper);
 
         listener.Start();
         Console.WriteLine("Listening...");
