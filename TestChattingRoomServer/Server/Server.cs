@@ -23,14 +23,18 @@ public static class ServerBuilder
 public sealed class Server
 {
     private readonly HttpListener _listener;
-    private string _textBuffer;
+    private List<Message> _textBuffer;
+    private Dictionary<string, int> _ipToUserId;
+    private int _maxUserId;
 
     public Server(string socket)
     {
         _listener = new HttpListener();
         _listener.Prefixes.Add(socket);
 
-        _textBuffer = String.Empty;
+        _textBuffer = new List<Message>();
+
+        _ipToUserId = new Dictionary<string, int>();
 
         _listener.Start();
         Console.WriteLine($"Listening from {socket}...");
@@ -68,6 +72,11 @@ public sealed class Server
         {
             await WriteToBuffer(request, response);
         }
+
+        if (request.HttpMethod == "GET" && request.Url!.AbsolutePath == "/messages")
+        {
+            await GetMessages(response);
+        }
     }
 
     private async Task Hello(HttpListenerResponse response)
@@ -92,19 +101,37 @@ public sealed class Server
         _ = await request.InputStream.ReadAsync(buffer, 0, buffer.Length);
         var message = JsonSerializer.Deserialize<RequestWriteToBuffer>(buffer);
 
-        // Append message to scratchPaper
-        _textBuffer += message?.Message;
+        // Append message to textBuffer
+        var userIpAddress = request.RemoteEndPoint.Address.ToString();
+        var userId = GetUserIdFromIpAddress(userIpAddress);
+        var chatInfo = new Message(userId, message?.Message ?? String.Empty, DateTime.Now);
+        _textBuffer.Add(chatInfo);
 
-        // Serialize string to JSON and to byte array eventually
-        var responseString = _textBuffer;
-        var outputBuffer = responseString.ToJsonUtf8ByteArray();
+        // Send HttpResponse OK to client after successful operation
+        response.StatusCode = (int)HttpStatusCode.OK;
+        response.Close();
+    }
 
-        // Decorate HttpListenerResponse object
+    private async Task GetMessages(HttpListenerResponse response)
+    {
+        var messageList = this._textBuffer;
+        var buffer = JsonSerializer.SerializeToUtf8Bytes(messageList);
+
         response.ContentType = "application/json";
-        response.ContentLength64 = outputBuffer.Length;
+        response.ContentLength64 = buffer.Length;
 
-        // Write the response to the output stream
-        await response.OutputStream.WriteAsync(outputBuffer, 0, outputBuffer.Length);
+        await response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
         response.OutputStream.Close();
+    }
+
+    private int GetUserIdFromIpAddress(string ipAddress)
+    {
+        if (_ipToUserId.ContainsKey(ipAddress))
+        {
+            return _ipToUserId[ipAddress];
+        }
+        _ipToUserId.Add(ipAddress, _maxUserId);
+        _maxUserId += 1;
+        return _ipToUserId[ipAddress];
     }
 }
