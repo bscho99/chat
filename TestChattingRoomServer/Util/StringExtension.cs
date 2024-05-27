@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
 
-namespace ConsoleApp1.Util;
+namespace TestChattingRoomServer.Util;
 
 public static class StringExtension
 {
